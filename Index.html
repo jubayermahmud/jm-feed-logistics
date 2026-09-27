@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="bn" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM Feed Logistics - Global Raw Material Supply Chain</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --primary-light: #1e293b;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --success: #10b981;
+            --text-dark: #334155;
+            --text-light: #f8fafc;
+            --bg-light: #f1f5f9;
+            --white: #ffffff;
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: #090d16;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .top-container {
+            width: 90%;
+            max-width: 1280px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .top-info {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .top-info span i {
+            color: var(--accent);
+            margin-right: 6px;
+        }
+
+        /* Language Dropdown */
+        .lang-select-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            color: var(--white);
+        }
+
+        .lang-select-wrapper i {
+            color: var(--accent);
+        }
+
+        .lang-dropdown {
+            background: transparent;
+            color: var(--white);
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .lang-dropdown option {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Header & Sticky Nav */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1280px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+        }
+
+        .logo-texts h1 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-texts p {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.88)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            letter-spacing: 20px;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .hero h2 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin: 0 auto 35px;
+            color: #cbd5e1;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Section Global Titles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.4rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            color: #64748b;
+            font-size: 1.05rem;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #475569;
+        }
+
+        .feature-bullets {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .feature-bullets li {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .feature-bullets li i {
+            color: var(--success);
+            font-size: 1.2rem;
+        }
+
+        .about-img-box img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 100px 20px;
+            background: var(--bg-light);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #e2e8f0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .product-img-container {
+            padding: 15px 15px 0 15px;
+        }
+
+        .main-product-img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .main-product-img:hover {
+            opacity: 0.9;
+        }
+
+        .thumb-gallery {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .thumb-img {
+            width: 50px;
+            height: 45px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .thumb-img:hover, .thumb-img.active {
+            border-color: var(--accent);
+            opacity: 1;
+        }
+
+        .product-body {
+            padding: 20px 25px;
+        }
+
+        .product-body h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .product-body p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .variant-group {
+            margin-top: 10px;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .variant-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .variant-select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background: var(--white);
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .variant-select:focus {
+            border-color: var(--accent);
+        }
+
+        .product-footer {
+            padding: 15px 25px;
+            background: var(--white);
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-label {
+            font-weight: 700;
+            color: var(--success);
+            font-size: 0.88rem;
+        }
+
+        .wa-btn {
+            background: #25d366;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.3s ease;
+        }
+
+        .wa-btn:hover {
+            background: #1eb957;
+        }
+
+        /* Fullscreen Lightbox Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .image-modal-content {
+            max-width: 800px;
+            max-height: 85vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            border: 3px solid var(--white);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent);
+        }
+
+        /* Proprietor Profile Section */
+        .profile-section {
+            padding: 100px 20px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .profile-card {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            padding: 50px 35px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--accent);
+        }
+
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-card h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+            font-weight: 800;
+        }
+
+        .profile-role {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .profile-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .profile-contact-info p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 20px;
+            background: var(--bg-light);
+        }
+
+        .contact-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 35px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent);
+            background: rgba(245, 158, 11, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .contact-item h4 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .contact-item p {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            background: #25d366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #1eb957;
+        }
+
+        /* Footer */
+        footer {
+            background: #090d16;
+            color: #94a3b8;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-container">
+            <div class="top-info">
+                <span><i class="fa fa-phone"></i> 01846295703, 01707395763</span>
+                <span><i class="fa fa-envelope"></i> jubayermahmudshohan@gmail.com</span>
+            </div>
+            <div>
+                <!-- Multilingual Select Dropdown (8 Languages) -->
+                <div class="lang-select-wrapper">
+                    <i class="fa fa-globe"></i>
+                    <select id="languageSelector" class="lang-dropdown" onchange="changeLanguage(this.value)">
+                        <option value="bn" selected>বাংলা (Bengali)</option>
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी (Hindi)</option>
+                        <option value="ar">العربية (Arabic)</option>
+                        <option value="zh">中文 (Chinese)</option>
+                        <option value="pt">Português (Brazil)</option>
+                        <option value="ja">日本語 (Japanese)</option>
+                        <option value="de">Deutsch (German)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo-wrapper">
+                <img src="https://images.unsplash.com/photo-1533450718592-29d45635f0a9?auto=format&fit=crop&w=150&q=80" alt="JM Logo" class="logo-img">
+                <div class="logo-texts">
+                    <h1>JM Feed Logistics</h1>
+                    <p data-bn="গ্লোবাল র ম্যাটেরিয়াল সাপ্লাই" 
+                       data-en="Global Raw Material Supply" 
+                       data-hi="ग्लोबल कच्चा माल आपूर्ति" 
+                       data-ar="توريد المواد الخام العالمية" 
+                       data-zh="全球原料供应" 
+                       data-pt="Fornecimento Global de Matéria-Prima" 
+                       data-ja="グローバル原料供給" 
+                       data-de="Globale Rohstoffversorgung">গ্লোবাল র ম্যাটেরিয়াল সাপ্লাই</p>
+                </div>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home" data-bn="হোম" data-en="Home" data-hi="होम" data-ar="الرئيسية" data-zh="首页" data-pt="Início" data-ja="ホーム" data-de="Startseite">হোম</a></li>
+                    <li><a href="#about" data-bn="কোম্পানি" data-en="About" data-hi="कंपनी" data-ar="عن الشركة" data-zh="关于我们" data-pt="Sobre" data-ja="会社概要" data-de="Über uns">কোম্পানি</a></li>
+                    <li><a href="#products" data-bn="প্রোডাক্টস" data-en="Products" data-hi="उत्पाद" data-ar="المنتجات" data-zh="产品" data-pt="Produtos" data-ja="製品" data-de="Produkte">প্রোডাক্টস</a></li>
+                    <li><a href="#profile" data-bn="স্বত্বাধিকারী" data-en="Proprietor" data-hi="मालिक" data-ar="المالك" data-zh="所有人" data-pt="Proprietário" data-ja="所有者" data-de="Inhaber">স্বত্বাধিকারী</a></li>
+                    <li><a href="#contact" data-bn="যোগাযোগ" data-en="Contact" data-hi="संपर्क" data-ar="اتصل بنا" data-zh="联系我们" data-pt="Contato" data-ja="お問い合わせ" data-de="Kontakt">যোগাযোগ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-watermark">JM</div>
+        <div class="hero-content">
+            <h2 data-bn="Global Raw Material <span>Supply Chain</span>" 
+                data-en="Global Raw Material <span>Supply Chain</span>" 
+                data-hi="ग्लोबल कच्चा माल <span>आपूर्ति श्रृंखला</span>" 
+                data-ar="سلسلة توريد <span>المواد الخام العالمية</span>" 
+                data-zh="全球原料<span>供应链</span>" 
+                data-pt="Cadeia de Suprimentos de <span>Matéria-Prima Global</span>" 
+                data-ja="グローバル原料<span>サプライチェーン</span>" 
+                data-de="Globale Rohstoff-<span>Lieferkette</span>">Global Raw Material <span>Supply Chain</span></h2>
+            
+            <p data-bn="মাছ, পোল্ট্রি এবং গবাদিপশুর ফিডের জন্য শতভাগ মানসম্মত বিভিন্ন দেশের ফিশ মিল, সয়াবিন মিল, গমের ভুসি, ভুট্টা এবং প্রয়োজনীয় র-ম্যাটেরিয়ালস পাইকারি মূল্যে দেশব্যাপী সরবরাহ করা হয়।" 
+               data-en="Supplying 100% quality Fish Meal, Soybean Meal, Wheat Bran, Corn, and all feed ingredients from various origins for animal feed nationwide at wholesale prices." 
+               data-hi="मछली, मुर्गी और मवेशियों के चारे के लिए विभिन्न देशों से १००% गुणवत्तापूर्ण फिश मील, सोयाबीन मील, गेंहू की भूसी, मक्का और सभी आवश्यक कच्चे माल थोक मूल्य पर देश भर में आपूर्ति किए जाते हैं।" 
+               data-ar="توريد وجبة الأسماك، وجبة صويا، نخالة القمح، الذرة، وجميع مكونات الأعلاف بضمان جودة 100% من مختلف المصادر بأسعار الجملة في جميع أنحاء البلاد." 
+               data-zh="以批发价向全国供应鱼粉、豆粕、小麦麸皮、玉米以及来自各国的 100% 优质动物饲料原料。" 
+               data-pt="Fornecimento de farinha de peixe, farelo de soja, farelo de trigo, milho e todos os ingredientes para ração animal de várias origens com 100% de qualidade, a preços de atacado em todo o país." 
+               data-ja="魚粉、大豆粕、ふすま、トウモロコシ、その他すべての飼料原料を各国から100%の品質保証付きで全国に卸売価格で供給します。" 
+               data-de="Lieferung von Fischmehl, Sojaschrot, Weizenkleie, Mais und allen Futterzutaten aus verschiedenen Herkünften in 100% Qualität zu Großhandelspreisen bundesweit.">মাছ, পোল্ট্রি এবং গবাদিপশুর ফিডের জন্য শতভাগ মানসম্মত বিভিন্ন দেশের ফিশ মিল, সয়াবিন মিল, গমের ভুসি, ভুট্টা এবং প্রয়োজনীয় র-ম্যাটেরিয়ালস পাইকারি মূল্যে দেশব্যাপী সরবরাহ করা হয়।</p>
+            
+            <a href="#products" class="btn-primary">
+                <span data-bn="প্রোডাক্ট ক্যাটালগ দেখুন" data-en="View Catalog" data-hi="कैटलॉग देखें" data-ar="عرض الكتالوج" data-zh="查看目录" data-pt="Ver Catálogo" data-ja="カタログを見る" data-de="Katalog ansehen">প্রোডাক্ট ক্যাটালগ দেখুন</span> <i class="fa fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-header">
+            <h2 data-bn="JM Feed Logistics সম্পর্কে" data-en="About JM Feed Logistics" data-hi="JM Feed Logistics के बारे में" data-ar="حول JM Feed Logistics" data-zh="关于 JM Feed Logistics" data-pt="Sobre a JM Feed Logistics" data-ja="JM Feed Logisticsについて" data-de="Über JM Feed Logistics">JM Feed Logistics সম্পর্কে</h2>
+            <p data-bn="খামার ও ফিড ইন্ডাস্ট্রির আস্থার বিশ্বস্ত প্রতিষ্ঠান" data-en="Trusted partner for farms and feed industries" data-hi="फार्म और फीड उद्योगों के लिए विश्वसनीय भागीदार" data-ar="شريك موثوق للمزارع وصناعات الأعلاف" data-zh="农场和饲料行业的信赖伙伴" data-pt="Parceiro confiável para fazendas e indústrias de ração" data-ja="農場および飼料業界の信頼できるパートナー" data-de="Verlässlicher Partner für Farmen und Futtermittelindustrien">খামার ও ফিড ইন্ডাস্ট্রির আস্থার বিশ্বস্ত প্রতিষ্ঠান</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3 data-bn="সেরা মানের প্রোটিন ও ফিড উপাদান সরবরাহকারী" data-en="Supplier of Premium Protein & Feed Ingredients" data-hi="प्रीमियम प्रोटीन और फीड सामग्री के आपूर्तिकर्ता" data-ar="مورد البروتين الممتاز ومكونات الأعلاف" data-zh="优质蛋白质和饲料原料供应商" data-pt="Fornecedor de proteína premium e ingredientes para ração" data-ja="プレミアムプロテインおよび飼料原料のサプライヤー" data-de="Lieferant von Premium-Protein und Futterzutaten">সেরা মানের প্রোটিন ও ফিড উপাদান সরবরাহকারী</h3>
+                <p data-bn="<strong>JM Feed Logistics</strong> ফিড মিল ও খামারিদের জন্য আন্তর্জাতিক মান বজায় রেখে কাঁচামাল সংগ্রহ ও সরবরাহ করে আসছে। আমরা প্রতিটি ব্যাচের গুণগত মান ও পুষ্টির মান শতভাগ নিশ্চিত করি।" 
+                   data-en="<strong>JM Feed Logistics</strong> has been sourcing and supplying raw materials maintaining international standards for feed mills and farmers. We ensure 100% quality and nutrition." 
+                   data-hi="<strong>JM Feed Logistics</strong> फीड मिलों और किसानों के लिए अंतरराष्ट्रीय मानकों को बनाए रखते हुए कच्चे माल की सोर्सिंग और आपूर्ति करता आ रहा है। हम १००% गुणवत्ता सुनिश्चित करते हैं।" 
+                   data-ar="تومل <strong>JM Feed Logistics</strong> على توريد وتوفير المواد الخام وفقاً للمعايير الدولية لمطاحن الأعلاف والمزارعين مع ضمان الجودة بنسبة 100%." 
+                   data-zh="<strong>JM Feed Logistics</strong> 一直为饲料厂和养殖户采购和供应符合国际标准的原料，确保 100% 的品质。" 
+                   data-pt="A <strong>JM Feed Logistics</strong> fornece matérias-primas mantendo padrões internacionais para fábricas de ração e agricultores, garantindo 100% de qualidade." 
+                   data-ja="<strong>JM Feed Logistics</strong>は、飼料工場や農家向けに国際基準を維持した原料を調達・供給し、100%の品質を保証しています。" 
+                   data-de="<strong>JM Feed Logistics</strong> beschafft und liefert Rohstoffe unter Einhaltung internationaler Standards für Futterfabriken und Landwirte und garantiert 100% Qualität."><strong>JM Feed Logistics</strong> ফিড মিল ও খামারিদের জন্য আন্তর্জাতিক মান বজায় রেখে কাঁচামাল সংগ্রহ ও সরবরাহ করে আসছে। আমরা প্রতিটি ব্যাচের গুণগত মান ও পুষ্টির মান শতভাগ নিশ্চিত করি।</p>
+                <ul class="feature-bullets">
+                    <li><i class="fa fa-check-circle"></i> <span data-bn="ল্যাব টেস্টকৃত ১০০% খাঁটি উপাদান" data-en="Lab-tested 100% pure ingredients" data-hi="लैब-परीक्षणित १००% शुद्ध सामग्री" data-ar="مكونات نقية 100% مختبرة مخبرياً" data-zh="经过实验室测试的 100% 纯正原料" data-pt="Ingredientes 100% puros testados em laboratório" data-ja="ラボテスト済み100%純粋な成分" data-de="Laborgeprüfte 100% reine Zutaten">ল্যাব টেস্টকৃত ১০০% খাঁটি উপাদান</span></li>
+                    <li><i class="fa fa-check-circle"></i> <span data-bn="সুলভ ও প্রতিযোগিতামূলক পাইকারি মূল্য" data-en="Affordable & competitive wholesale price" data-hi="किफायती और प्रतिस्पर्धी थोक मूल्य" data-ar="أسعار جملة معقولة ومنافسة" data-zh="实惠且具有竞争力的批发价" data-pt="Preço de atacado acessível e competitivo" data-ja="手頃で競争力のある卸売価格" data-de="Günstiger und wettbewerbsfähiger Großhandelspreis">সুলভ ও প্রতিযোগিতামূলক পাইকারি মূল্য</span></li>
+                    <li><i class="fa fa-check-circle"></i> <span data-bn="দ্রুত ও নিরাপদ দেশব্যাপী ডেলিভারি নেটওয়ার্ক" data-en="Fast & safe nationwide delivery network" data-hi="तेज और सुरक्षित देशव्यापी डिलीवरी नेटवर्क" data-ar="شبكة توصيل سريعة وآمنة في جميع أنحاء البلاد" data-zh="快速安全的全国配送网络" data-pt="Rede de entrega rápida e segura em todo o país" data-ja="迅速で安全な全国配送ネットワーク" data-de="Schnelles und sicheres bundesweites Liefernetzwerk">দ্রুত ও নিরাপদ দেশব্যাপী ডেলিভারি নেটওয়ার্ক</span></li>
+                </ul>
+            </div>
+            <div class="about-img-box">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Warehouse Operations">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="section-header">
+            <h2 data-bn="ফিড তৈরির র-ম্যাটেরিয়ালস ও ফর্মুলেশন ক্যাটালগ" data-en="Feed Raw Materials & Formulation Catalog" data-hi="फीड कच्चा माल और फॉर्मूलेशन कैटलॉग" data-ar="كتالوج مواد صنع الأعلاف والتركيبات" data-zh="饲料原料与配方目录" data-pt="Catálogo de Matérias-Primas e Formulações de Ração" data-ja="飼料原料および配合カタログ" data-de="Futtermittel-Rohstoff- und Formulierungskatalog">ফিড তৈরির র-ম্যাটেরিয়ালস ও ফর্মুলেশন ক্যাটালগ</h2>
+            <p data-bn="পোল্ট্রি, মৎস্য ও ক্যাটেল ফিডের সকল প্রকার র-ম্যাটেরিয়ালস, অনুপাত, উৎপত্তি এবং গ্রেড দেখে অর্ডার করুন" data-en="Order all types of poultry, fish, and cattle feed raw materials, ratios, origins, and grades" data-hi="सभी प्रकार के मुर्गी, मछली और मवेशी फीड कच्चे माल, अनुपात और मूल के साथ आर्डर करें" data-ar="اطلب جميع أنواع مواد الأعلاف والنسب والمصادر للدواجن والأسماك والماشية" data-zh="订购所有类型的家禽、鱼类和牛饲料原料、比例和产地" data-pt="Encomende todos os tipos de matérias-primas, proporções e origens para ração de aves, peixes e gado" data-ja="家禽、魚、牛の飼料原料、比率、原産地を確認してご注文ください" data-de="Bestellen Sie alle Arten von Geflügel-, Fisch- und Rinderfutter-Rohstoffen, Verhältnissen und Herkünften">পোল্ট্রি, মৎস্য ও ক্যাটেল ফিডের সকল প্রকার র-ম্যাটেরিয়ালস, অনুপাত, উৎপত্তি এবং গ্রেড দেখে অর্ডার করুন</p>
+        </div>
+        <div class="product-grid">
+
+            <!-- 1. ভুট্টা গুঁড়ো (Maize) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-corn" src="https://images.unsplash.com/photo-1601593346740-92561577e386?auto=format&fit=crop&w=600&q=80" alt="Maize" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1601593346740-92561577e386?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-corn', this)">
+                            <img src="https://images.unsplash.com/photo-1551754655-cd27e38d207b?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-corn', this)">
+                            <img src="https://images.unsplash.com/photo-1527842891421-42eec6e703ea?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-corn', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="ভুট্টা গুঁড়ো (Maize)" data-en="Maize (Corn)" data-hi="मक्का (Maize)" data-ar="ذرة مطحونة (Maize)" data-zh="玉米粉 (Maize)" data-pt="Milho Moído (Maize)" data-ja="トウモロコシ粉 (Maize)" data-de="Maismehl (Maize)">ভুট্টা গুঁড়ো (Maize)</h3>
+                        <p data-bn="মূল শক্তির (Energy) উৎস[cite: 1, 2]." data-en="Primary source of energy[cite: 1, 2]." data-hi="ऊर्जा का प्राथमिक स्रोत[cite: 1, 2]." data-ar="المصدر الأساسي للطاقة[cite: 1, 2]." data-zh="主要的能量来源[cite: 1, 2]." data-pt="Fonte primária de energia[cite: 1, 2]." data-ja="主要なエネルギー源[cite: 1, 2]." data-de="Primäre Energiequelle[cite: 1, 2].">মূল শক্তির (Energy) উৎস[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="corn-variant" class="variant-select">
+                                <option value="পোল্ট্রি অনুপাত: ৪৫%-৬০% | সোর্স: বাংলাদেশ, ভারত, ব্রাজিল[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ৪৫% - ৬০%)</option>
+                                <option value="মাছের ফিড অনুপাত: ১৫%-২৫% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">মাছের খাবার (অনুপাত: ১৫% - ২৫%)</option>
+                                <option value="গরুর খাবার অনুপাত: ৩০%-৪০% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ৩০% - ৪০%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('corn-variant', 'ভুট্টা গুঁড়ো (Maize)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. সয়াবিন মিল (Soya DOC) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-soy" src="https://images.unsplash.com/photo-1589923188653-ba6dc776cfcf?auto=format&fit=crop&w=600&q=80" alt="Soya DOC" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1589923188653-ba6dc776cfcf?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-soy', this)">
+                            <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-soy', this)">
+                            <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-soy', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="সয়াবিন মিল (Soya DOC)" data-en="Soybean Meal (Soya DOC)" data-hi="सोयाबीन मील (Soya DOC)" data-ar="وجبة صويا (Soya DOC)" data-zh="豆粕 (Soya DOC)" data-pt="Farelo de Soja (Soya DOC)" data-ja="大豆粕 (Soya DOC)" data-de="Sojaschrot (Soya DOC)">সয়াবিন মিল (Soya DOC)</h3>
+                        <p data-bn="প্রধান উদ্ভিজ্জ প্রোটিন (মাংস ও বৃদ্ধির জন্য)[cite: 1, 2]." data-en="Main plant protein for meat and growth[cite: 1, 2]." data-hi="मुख्य वनस्पति प्रोटीन (मांस और विकास के लिए)[cite: 1, 2]." data-ar="البروتين النباتي الأساسي للنمو واللحوم[cite: 1, 2]." data-zh="主要植物蛋白（用于肉类和生长）[cite: 1, 2]." data-pt="Principal proteína vegetal para carne e crescimento[cite: 1, 2]." data-ja="肉と成長のための主要な植物性タンパク質[cite: 1, 2]." data-de="Wichtigstes pflanzliches Protein für Fleisch und Wachstum[cite: 1, 2].">প্রধান উদ্ভিজ্জ প্রোটিন (মাংস ও বৃদ্ধির জন্য)[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="soy-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ২০%-৩৫% | সোর্স: আমেরিকা, ব্রাজিল, ভারত[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ২০% - ৩৫%)</option>
+                                <option value="মাছের ফিড অনুপাত: ২৫%-৪০% | সোর্স: ব্রাজিল, ভারত, বাংলাদেশ[cite: 1, 2]">মাছের খাবার (অনুপাত: ২৫% - ৪০%)</option>
+                                <option value="গরুর খাবার অনুপাত: ১০%-২০% | সোর্স: ব্রাজিল, আমেরিকা, ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ১০% - ২০%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('soy-variant', 'সয়াবিন মিল (Soya DOC)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. গম / আটা (Wheat) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-wheat" src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=600&q=80" alt="Wheat" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-wheat', this)">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-wheat', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="গম / আটা (Wheat)" data-en="Wheat" data-hi="गेहूं (Wheat)" data-ar="قمح (Wheat)" data-zh="小麦 (Wheat)" data-pt="Trigo (Wheat)" data-ja="小麦 (Wheat)" data-de="Weizen (Wheat)">গম / আটা (Wheat)</h3>
+                        <p data-bn="কার্বোহাইড্রেট ও ফিডের বাইন্ডিং শক্ত করে[cite: 1, 2]." data-en="Carbohydrates and strengthens feed binding[cite: 1, 2]." data-hi="कार्बोहाइड्रेट और फीड बाइंडिंग मजबूत करता है[cite: 1, 2]." data-ar="كربوهيدرات ويعزز تماسك العلف[cite: 1, 2]." data-zh="碳水化合物并增强饲料粘合力[cite: 1, 2]." data-pt="Carboidratos e fortalece a ligação da ração[cite: 1, 2]." data-ja="炭水化物および飼料の結合力を強化[cite: 1, 2]." data-de="Kohlenhydrate und stärkt die Futterbindung[cite: 1, 2].">গম / আটা (Wheat)</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="wheat-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ৫%-১০% | সোর্স: বাংলাদেশ, ভারত, রাশিয়া[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ৫% - ১০%)</option>
+                                <option value="মাছের ফিড অনুপাত: ১০%-২০% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">মাছের খাবার (অনুপাত: ১০% - ২০%)</option>
+                                <option value="গরুর খাবার অনুপাত: ১০%-১৫% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ১০% - ১৫%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('wheat-variant', 'গম / আটা (Wheat)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. রাইস পলিশ / কুঁড়া (Rice Polish) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-rice" src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" alt="Rice Polish" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-rice', this)">
+                            <img src="https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-rice', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="রাইস পলিশ / কুঁড়া (Rice Polish)" data-en="Rice Polish / DORB" data-hi="राइस पॉलिश / चोकर (Rice Polish)" data-ar="نخالة الأرز (Rice Polish)" data-zh="米糠/米珍 (Rice Polish)" data-pt="Farelo de Arroz (Rice Polish)" data-ja="米ぬか / ライスポリッシュ (Rice Polish)" data-de="Reiskleie (Rice Polish)">রাইস পলিশ / কুঁড়া (Rice Polish / DORB)</h3>
+                        <p data-bn="সাশ্রয়ী এনার্জি, ফ্যাট ও রুমিলেশন প্রক্রিয়ার শক্তি[cite: 1, 2]." data-en="Cost-effective energy, fat, and rumination energy source[cite: 1, 2]." data-hi="किफायती ऊर्जा और वसा का स्रोत[cite: 1, 2]." data-ar="مصدر فعال للطاقة والدهون[cite: 1, 2]." data-zh="经济实惠的能量和脂肪来源[cite: 1, 2]." data-pt="Fonte de energia e gordura econômica[cite: 1, 2]." data-ja="費用対効果の高いエネルギーおよび脂肪源[cite: 1, 2]." data-de="Wirtschaftliche Energie- und Fettquelle[cite: 1, 2].">সাশ্রয়ী এনার্জি, ফ্যাট ও রুমিলেশন প্রক্রিয়ার শক্তি[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="rice-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ৫%-১২% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ৫% - ১২%)</option>
+                                <option value="মাছের ফিড (DORB) অনুপাত: ২০%-৩০% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">মাছের খাবার DORB (অনুপাত: ২০% - ৩০%)</option>
+                                <option value="গরুর খাবার অনুপাত: ১৫%-২৫% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ১৫% - ২৫%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('rice-variant', 'রাইস পলিশ / কুঁড়া')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. সরিষার খৈল / তিল খৈল (Mustard Cake) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-cake" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Mustard Cake" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-cake', this)">
+                            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-cake', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="সরিষার খৈল / তিল খৈল (Mustard Cake)" data-en="Mustard Oil Cake" data-hi="सरसों की खली (Mustard Cake)" data-ar="كسبة الخردل (Mustard Cake)" data-zh="菜籽饼 (Mustard Cake)" data-pt="Torta de Mostarda (Mustard Cake)" data-ja="マスタードケーキ (Mustard Cake)" data-de="Senfkuchen (Mustard Cake)">সরিষার খৈল / তিল খৈল (Mustard Cake)</h3>
+                        <p data-bn="ঐতিহ্যবাহী ও সাশ্রয়ী প্রোটিন এবং দুধ উৎপাদন বৃদ্ধির উৎস[cite: 1, 2]." data-en="Traditional and cost-effective protein source for milk production[cite: 1, 2]." data-hi="पारंपरिक और किफायती प्रोटीन स्रोत[cite: 1, 2]." data-ar="مصدر بروتين تقليدي وفعال لإنتاج الحليب[cite: 1, 2]." data-zh="传统的优质蛋白质和产奶量提升来源[cite: 1, 2]." data-pt="Fonte tradicional e econômica de proteína para produção de leite[cite: 1, 2]." data-ja="牛乳生産のための伝統的で経済的なタンパク質源[cite: 1, 2]." data-de="Traditionelle und kostengünstige Proteinquelle für die Milchproduktion[cite: 1, 2].">সরিষার খৈল / তিল খৈল (Mustard Cake)</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="cake-variant" class="variant-select">
+                                <option value="মাছের ফিড অনুপাত: ১০%-২০% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">মাছের খাবার (অনুপাত: ১০% - ২০%)</option>
+                                <option value="গরুর খাবার অনুপাত: ১০%-২০% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ১০% - ২০%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('cake-variant', 'সরিষার খৈল')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. ডিসিপি পাউডার (DCP) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-dcp" src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80" alt="DCP Powder" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-dcp', this)">
+                            <img src="https://images.unsplash.com/photo-1579165466941-931269ef1be7?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-dcp', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="ডিসিপি পাউডার (DCP)" data-en="Dicalcium Phosphate (DCP)" data-hi="डीसीपी पाउडर (DCP)" data-ar="مسحوق فوسفات ثنائي الكالسيوم (DCP)" data-zh="磷酸氢钙 (DCP)" data-pt="Fosfato Bicálcico (DCP)" data-ja="リン酸二カルシウム (DCP)" data-de="Dicalciumphosphat (DCP)">ডিসিপি পাউডার (DCP)</h3>
+                        <p data-bn="ক্যালসিয়াম ও ফসফরাসের পারফেক্ট কম্বিনেশন[cite: 1, 2]." data-en="Perfect combination of calcium and phosphorus[cite: 1, 2]." data-hi="कैल्शियम और फास्फोरस का सही संयोजन[cite: 1, 2]." data-ar="مزيج مثالي من الكالسيوم والفوسفور[cite: 1, 2]." data-zh="钙和磷的完美结合[cite: 1, 2]." data-pt="Combinação perfeita de cálcio e fósforo[cite: 1, 2]." data-ja="カルシウムとリンの完璧な組み合わせ[cite: 1, 2]." data-de="Perfekte Kombination aus Calcium und Phosphor[cite: 1, 2].">ক্যালসিয়াম ও ফসফরাসের পারফেক্ট কম্বিনেশন[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="dcp-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ১%-২% | সোর্স: চীন, ভারত, বাংলাদেশ[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ১% - ২%)</option>
+                                <option value="মাছের ফিড অনুপাত: ১%-২% | সোর্স: চীন, ভারত[cite: 1, 2]">মাছের খাবার (অনুপাত: ১% - ২%)</option>
+                                <option value="গরুর খাবার অনুপাত: ১%-১.৫% | সোর্স: চীন, ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ১% - ১.৫%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('dcp-variant', 'ডিসিপি পাউডার (DCP)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 7. ভিটামিন ও মিনারেল প্রিমিক্স -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-premix" src="https://images.unsplash.com/photo-1579165466941-931269ef1be7?auto=format&fit=crop&w=600&q=80" alt="Vitamin Premix" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1579165466941-931269ef1be7?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-premix', this)">
+                            <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=150&q=80" class="thumb-img" onclick="changeImage('main-premix', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="ভিটামিন ও মিনারেল প্রিমিক্স" data-en="Vitamin & Mineral Premix" data-hi="विटामिन और मिनरल प्रीमिक्स" data-ar="بريمكس الفيتامينات والمعادن" data-zh="维生素与矿物质预混料" data-pt="Premix de Vitaminas e Minerais" data-ja="ビタミン・ミネラルプレミックス" data-de="Vitamin- und Mineralstoff-Premix">ভিটামিন ও মিনারেল প্রিমিক্স / অ্যাডিটিভস</h3>
+                        <p data-bn="রোগ প্রতিরোধ ও ধকল কমাতে সহায়ক[cite: 1, 2]." data-en="Boosts immunity and reduces stress[cite: 1, 2]." data-hi="रोग प्रतिरोधक क्षमता बढ़ाता है[cite: 1, 2]." data-ar="يعزز المناعة ويقلل التوتر[cite: 1, 2]." data-zh="增强免疫力并减少应激[cite: 1, 2]." data-pt="Aumenta a imunidade e reduz o estresse[cite: 1, 2]." data-ja="免疫力を高め、ストレスを軽減します[cite: 1, 2]." data-de="Stärkt das Immunsystem und reduziert Stress[cite: 1, 2].">রোগ প্রতিরোধ, ধকল কমানো এবং দুধ বাড়াতে সহায়ক[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="premix-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ০.২৫%-০.৫% | সোর্স: ফ্রান্স, জার্মানি, চীন[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ০.২৫% - ০.৫%)</option>
+                                <option value="মাছের ফিড অনুপাত: ০.২৫%-০.৫% | সোর্স: ফ্রান্স, চীন, ভারত[cite: 1, 2]">মাছের খাবার (অনুপাত: ০.২৫% - ০.৫%)</option>
+                                <option value="গরুর খাবার অনুপাত: ০.২৫%-০.৫% | সোর্স: ফ্রান্স, জার্মানি, ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ০.২৫% - ০.৫%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('premix-variant', 'ভিটামিন ও মিনারেল প্রিমিক্স')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 8. সাধারণ লবণ (Salt) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-salt" src="https://images.unsplash.com/photo-1518110905582-72e3f5383569?auto=format&fit=crop&w=600&q=80" alt="Salt" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1518110905582-72e3f5383569?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-salt', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="সাধারণ লবণ (Salt)" data-en="Common Salt" data-hi="साधारण नमक (Salt)" data-ar="ملح طعام (Salt)" data-zh="食盐 (Salt)" data-pt="Sal Comum (Salt)" data-ja="食塩 (Salt)" data-de="Speisesalz (Salt)">সাধারণ লবণ (Salt)</h3>
+                        <p data-bn="ইলেকট্রোলাইট ব্যালেন্স ঠিক রাখে[cite: 1, 2]." data-en="Maintains electrolyte balance[cite: 1, 2]." data-hi="इलेक्ट्रोलाइट संतुलन बनाए रखता है[cite: 1, 2]." data-ar="يحافظ على توازن الكهارل[cite: 1, 2]." data-zh="维持电解质平衡[cite: 1, 2]." data-pt="Mantém o equilíbrio eletrolítico[cite: 1, 2]." data-ja="電解質バランスを維持します[cite: 1, 2]." data-de="Erhält den Elektrolythaushalt[cite: 1, 2].">ইলেকট্রোলাইট ব্যালেন্স ঠিক রাখে এবং মুখের রুচি বজায় রাখে[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="salt-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ০.৩%-০.৫% | সোর্স: বাংলাদেশ[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ০.৩% - ০.৫%)</option>
+                                <option value="গরুর খাবার অনুপাত: ০.৫%-১% | সোর্স: বাংলাদেশ[cite: 1, 2]">গরুর খাবার (অনুপাত: ০.৫% - ১%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('salt-variant', 'সাধারণ লবণ (Salt)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 9. মিট অ্যান্ড বোন মিল (MBM) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-mbm" src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=600&q=80" alt="MBM" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-mbm', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="মিট অ্যান্ড বোন মিল (MBM)" data-en="Meat and Bone Meal (MBM)" data-hi="मीट एंड बोन मील (MBM)" data-ar="وجبة اللحم والعظم (MBM)" data-zh="肉骨粉 (MBM)" data-pt="Farinha de Carne e Ossos (MBM)" data-ja="肉骨粉 (MBM)" data-de="Meat and Bone Meal (MBM)">মিট অ্যান্ড বোন মিল (MBM)</h3>
+                        <p data-bn="উচ্চমানের প্রাণিজ প্রোটিন ও ফসফরাস[cite: 1, 2]." data-en="High-quality animal protein and phosphorus[cite: 1, 2]." data-hi="उच्च गुणवत्ता वाला पशु प्रोटीन और फास्फोरस[cite: 1, 2]." data-ar="بروتين حيواني عالي الجودة وفوسفور[cite: 1, 2]." data-zh="优质动物蛋白和磷[cite: 1, 2]." data-pt="Proteína animal de alta qualidade e fósforo[cite: 1, 2]." data-ja="高品質の動物性タンパク質とリン[cite: 1, 2]." data-de="Hochwertiges tierisches Protein und Phosphor[cite: 1, 2].">উচ্চমানের প্রাণিজ প্রোটিন ও ফসফরাস[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="mbm-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ৩%-৭% | সোর্স: আমেরিকা, অস্ট্রেলিয়া[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ৩% - ৭%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('mbm-variant', 'মিট অ্যান্ড বোন মিল (MBM)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 10. লাইমস্টোন / ঝিনুক গুঁড়ো -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-lime" src="https://images.unsplash.com/photo-1533450718592-29d45635f0a9?auto=format&fit=crop&w=600&q=80" alt="Limestone" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1533450718592-29d45635f0a9?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-lime', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="লাইমস্টোন / ঝিনুক ও ক্যালসিয়াম পাউডার" data-en="Limestone / Oyster Shell Powder" data-hi="लाइमस्टोन / चूना पत्थर पाउडर" data-ar="مسحوق الحجر الجيري" data-zh="石灰石/贝壳粉" data-pt="Calcário / Pó de Concha" data-ja="石灰石 / 貝殻粉" data-de="Kalkstein / Austernschalenpulver">লাইমস্টোন / ঝিনুক ও ক্যালসিয়াম পাউডার</h3>
+                        <p data-bn="ডিমের খোসা, হাড় গঠন এবং দুধের ঘাটতি মেটাতে সহায়ক[cite: 1, 2]." data-en="Helps in eggshell, bone formation, and calcium deficit[cite: 1, 2]." data-hi="अंडे के छिलके और हड्डियों के निर्माण में सहायक[cite: 1, 2]." data-ar="يساعد في تكوين قشر البيض والعظام[cite: 1, 2]." data-zh="有助于蛋壳、骨骼形成和补充钙质[cite: 1, 2]." data-pt="Ajuda na casca do ovo, formação óssea e déficit de cálcio[cite: 1, 2]." data-ja="卵殻、骨の形成、カルシウム不足の解消に役立ちます[cite: 1, 2]." data-de="Hilft bei Eierschale, Knochenbildung und Kalziummangel[cite: 1, 2].">ডিমের খোসা, হাড় গঠন এবং দুধের ঘাটতি মেটাতে সহায়ক[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="lime-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ২%-৪% (লেয়ারে ১০%) | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ২% - ৪%)</option>
+                                <option value="গরুর খাবার (লাইমস্টোন পাউডার) অনুপাত: ১%-২% | সোর্স: বাংলাদেশ (সিলেট), ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ১% - ২%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('lime-variant', 'লাইমস্টোন / ক্যালসিয়াম পাউডার')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 11. সয়াবিন বা পাম তেল / ফিশ অয়েল -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-oil" src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80" alt="Oil" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-oil', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="সয়াবিন তেল, পাম তেল বা ফিশ অয়েল" data-en="Soybean Oil, Palm Oil or Fish Oil" data-hi="सोयाबीन तेल, पाम तेल या फिश ऑयल" data-ar="زيت الصويا، زيت النخيل أو زيت السمك" data-zh="大豆油、棕榈油或鱼油" data-pt="Óleo de Soja, Óleo de Palma ou Óleo de Peixe" data-ja="大豆油、パーム油、または魚油" data-de="Sojabohnenöl, Palmöl oder Fischöl">সয়াবিন তেল, পাম তেল বা ফিশ অয়েল</h3>
+                        <p data-bn="মেটাবলাইজেবল এনার্জি (ME) এবং ওমেগা ফ্যাটি অ্যাসিড বাড়ায়[cite: 1, 2]." data-en="Increases metabolisable energy and omega fatty acids[cite: 1, 2]." data-hi="उपापचय ऊर्जा और ओमेगा फैटी एसिड बढ़ाता है[cite: 1, 2]." data-ar="يزيد الطاقة والأحماض الدهنية أوميغا[cite: 1, 2]." data-zh="增加代谢能和欧米伽脂肪酸[cite: 1, 2]." data-pt="Aumenta a energia metabolizável e ácidos graxos ômega[cite: 1, 2]." data-ja="代謝エネルギーとオメガ脂肪酸を増加させます[cite: 1, 2]." data-de="Erhöht umsetzbare Energie und Omega-Fettsäuren[cite: 1, 2].">মেটাবলাইজেবল এনার্জি (ME) এবং ওমেগা ফ্যাটি অ্যাসিড বাড়ায়[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="oil-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ১%-৩% | সোর্স: মালয়েশিয়া, বাংলাদেশ[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ১% - ৩%)</option>
+                                <option value="মাছের ফিড অনুপাত: ১%-৩% | সোর্স: মালয়েশিয়া, বাংলাদেশ[cite: 1, 2]">মাছের খাবার (অনুপাত: ১% - ৩%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('oil-variant', 'সয়াবিন/পাম তেল বা ফিশ অয়েল')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 12. অ্যামিনো অ্যাসিড (Lysine / Methionine) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-amino" src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80" alt="Amino Acid" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-amino', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="অ্যামিনো অ্যাসিড (Lysine/Methionine)" data-en="Amino Acids (Lysine/Methionine)" data-hi="अमीनो एसिड (Lysine/Methionine)" data-ar="الأحماض الأمينية (Lysine/Methionine)" data-zh="氨基酸 (赖氨酸/蛋氨酸)" data-pt="Aminoácidos (Lisina/Metionina)" data-ja="アミノ酸 (リジン/メチオニン)" data-de="Aminosäuren (Lysin/Methionin)">অ্যামিনো অ্যাসিড (Lysine/Methionine)</h3>
+                        <p data-bn="প্রোটিন হজম ও মাংসের উৎপাদন বাড়ায়[cite: 1, 2]." data-en="Improves protein digestion and meat production[cite: 1, 2]." data-hi="प्रोटीन पाचन और मांस उत्पादन में सुधार करता है[cite: 1, 2]." data-ar="يحسن هضم البروتين وإنتاج اللحوم[cite: 1, 2]." data-zh="提高蛋白质消化率和肉类产量[cite: 1, 2]." data-pt="Melhora a digestão de proteínas e produção de carne[cite: 1, 2]." data-ja="タンパク質の消化と肉の生産を改善します[cite: 1, 2]." data-de="Verbessert die Eiweißverdauung und Fleischproduktion[cite: 1, 2].">প্রোটিন হজম ও মাংসের উৎপাদন বাড়ায়[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="amino-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ০.১%-০.৩% | সোর্স: চীন, জাপান, জার্মানি[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ০.১% - ০.৩%)</option>
+                                <option value="মাছের ফিড অনুপাত: ০.১%-০.৪% | সোর্স: চীন, জাপান[cite: 1, 2]">মাছের খাবার (অনুপাত: ০.১% - ০.৪%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('amino-variant', 'অ্যামিনো অ্যাসিড')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 13. টক্সিন বাইন্ডার (Toxin Binder) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-toxin" src="https://images.unsplash.com/photo-1579165466941-931269ef1be7?auto=format&fit=crop&w=600&q=80" alt="Toxin Binder" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1579165466941-931269ef1be7?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-toxin', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="টক্সিন বাইন্ডার (Toxin Binder)" data-en="Toxin Binder" data-hi="टॉक्सिन बाइंडर" data-ar="رابط السموم (Toxin Binder)" data-zh="脱霉剂 (Toxin Binder)" data-pt="Sequestrante de Toxinas (Toxin Binder)" data-ja="トキシンスビンダー (Toxin Binder)" data-de="Toxinbinder (Toxin Binder)">টক্সিন বাইন্ডার (Toxin Binder)</h3>
+                        <p data-bn="ভুট্টা ও সয়াবিনের বিষাক্ততা দূর করে[cite: 1, 2]." data-en="Removes fungus and toxicity from ingredients[cite: 1, 2]." data-hi="फंगस और विषाक्तता को दूर करता है[cite: 1, 2]." data-ar="يزيل الفطريات والسموم من المكونات[cite: 1, 2]." data-zh="清除霉菌和毒素[cite: 1, 2]." data-pt="Remove fungos e toxicidade dos ingredientes[cite: 1, 2]." data-ja="原料からカビや毒素を取り除きます[cite: 1, 2]." data-de="Entfernt Pilze und Giftstoffe aus den Zutaten[cite: 1, 2].">ভুট্টা ও সয়াবিনের ফাঙ্গাস বা বিষাক্ততা দূর করে[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="toxin-variant" class="variant-select">
+                                <option value="পোল্ট্রি ফিড অনুপাত: ০.১%-০.২% | সোর্স: আমেরিকা, ইউরোপ[cite: 1, 2]">পোল্ট্রি ফিড (অনুপাত: ০.১% - ০.২%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('toxin-variant', 'টক্সিন বাইন্ডার')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 14. ফিশ মিল / শুঁটকি (Fish Meal) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-fish" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Fish Meal" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-fish', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="ফিশ মিল / শুঁটকি (Fish Meal)" data-en="Fish Meal" data-hi="फिश मील (Fish Meal)" data-ar="وجبة السمك (Fish Meal)" data-zh="鱼粉 (Fish Meal)" data-pt="Farinha de Peixe (Fish Meal)" data-ja="魚粉 (Fish Meal)" data-de="Fischmehl (Fish Meal)">ফিশ মিল / শুঁটকি (Fish Meal)</h3>
+                        <p data-bn="মাছের দ্রুত বৃদ্ধির জন্য প্রয়োজনীয় প্রাণিজ প্রোটিন[cite: 1, 2]." data-en="Essential animal protein for rapid fish growth[cite: 1, 2]." data-hi="मछली के तेजी से विकास के लिए आवश्यक पशु प्रोटीन[cite: 1, 2]." data-ar="بروتين حيواني أساسي لنمو الأسماك السريع[cite: 1, 2]." data-zh="鱼类快速生长所必需的动物蛋白[cite: 1, 2]." data-pt="Proteína animal essencial para o crescimento rápido dos peixes[cite: 1, 2]." data-ja="魚の急速な成長に不可欠な動物性タンパク質[cite: 1, 2]." data-de="Wesentliches tierisches Protein für schnelles Fischwachstum[cite: 1, 2].">মাছের দ্রুত বৃদ্ধির জন্য সবচেয়ে প্রয়োজনীয় প্রাণিজ প্রোটিন[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="fish-variant" class="variant-select">
+                                <option value="মাছের ফিড অনুপাত: ১০%-২৫% | সোর্স: বাংলাদেশ, ভারত, পেরু, ওমান[cite: 1, 2]">মাছের খাবার (অনুপাত: ১০% - ২৫%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('fish-variant', 'ফিশ মিল / শুঁটকি')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 15. রাইস গ্লুটেন মিল (RGM) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-rgm" src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80" alt="RGM" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-rgm', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="রাইস গ্লুটেন মিল (RGM)" data-en="Rice Gluten Meal (RGM)" data-hi="राइस ग्लूटेन मील (RGM)" data-ar="وجبة غلوتين الأرز (RGM)" data-zh="米面筋粉 (RGM)" data-pt="Farelo de Glúten de Arroz (RGM)" data-ja="ライスグルテンミール (RGM)" data-de="Reis-Gluten-Meal (RGM)">রাইস গ্লুটেন মিল (RGM)</h3>
+                        <p data-bn="প্রোটিন পারসেন্টেজ বুস্ট করার জন্য ব্যবহৃত হয়[cite: 1, 2]." data-en="Used to boost protein percentage[cite: 1, 2]." data-hi="प्रोटीन प्रतिशत बढ़ाने के लिए उपयोग किया जाता है[cite: 1, 2]." data-ar="يستخدم لزيادة نسبة البروتين[cite: 1, 2]." data-zh="用于提高蛋白质百分比[cite: 1, 2]." data-pt="Usado para aumentar a porcentagem de proteína[cite: 1, 2]." data-ja="タンパク質含有量を高めるために使用されます[cite: 1, 2]." data-de="Wird verwendet, um den Proteinprozentsatz zu erhöhen[cite: 1, 2].">প্রোটিন পারসেন্টেজ বুস্ট করার জন্য ব্যবহৃত হয়[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="rgm-variant" class="variant-select">
+                                <option value="মাছের ফিড অনুপাত: ৫%-১২% | সোর্স: ভারত, চীন[cite: 1, 2]">মাছের খাবার (অনুপাত: ৫% - ১২%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('rgm-variant', 'রাইস গ্লুটেন মিল (RGM)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 16. পেলিট বাইন্ডার (Pellet Binder) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-binder" src="https://images.unsplash.com/photo-1551754655-cd27e38d207b?auto=format&fit=crop&w=600&q=80" alt="Pellet Binder" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1551754655-cd27e38d207b?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-binder', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="পেলিট বাইন্ডার (Pellet Binder)" data-en="Pellet Binder" data-hi="पेलिट बाइंडर" data-ar="رابط الحبيبات (Pellet Binder)" data-zh="颗粒粘合剂 (Pellet Binder)" data-pt="Aglutinante de Pelotas (Pellet Binder)" data-ja="ペレットバインダー (Pellet Binder)" data-de="Pelletbinder (Pellet Binder)">পেলিট বাইন্ডার (Pellet Binder)</h3>
+                        <p data-bn="যাতে খাবার পানিতে ১-২ ঘণ্টা না গলে ভাসে[cite: 1, 2]." data-en="Keeps feed floating in water for 1-2 hours[cite: 1, 2]." data-hi="चारे को पानी में 1-2 घंटे तक तैरने में मदद करता है[cite: 1, 2]." data-ar="يبقي العلف طافياً في الماء لمدة 1-2 ساعة[cite: 1, 2]." data-zh="保持饲料在水中漂浮 1-2 小时而不融化[cite: 1, 2]." data-pt="Mantém a ração flutuando na água por 1-2 horas[cite: 1, 2]." data-ja="飼料が水中で1〜2時間浮遊し続けるようにします[cite: 1, 2]." data-de="Hält das Futter 1-2 Stunden im Wasser schwimmfähig[cite: 1, 2].">যাতে খাবার পানিতে ১-২ ঘণ্টা না গলে ভাসে[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="binder-variant" class="variant-select">
+                                <option value="মাছের ফিড অনুপাত: ১%-২% | সোর্স: চীন, তাইওয়ান, ভারত[cite: 1, 2]">মাছের খাবার (অনুপাত: ১% - ২%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('binder-variant', 'পেলিট বাইন্ডার')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 17. গমের ভুষি (Wheat Bran) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-bran" src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=600&q=80" alt="Wheat Bran" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-bran', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="গমের ভুষি (Wheat Bran)" data-en="Wheat Bran" data-hi="गेहूं की भूसी (Wheat Bran)" data-ar="نخالة القمح (Wheat Bran)" data-zh="小麦麸皮 (Wheat Bran)" data-pt="Farelo de Trigo (Wheat Bran)" data-ja="ふすま (Wheat Bran)" data-de="Weizenkleie (Wheat Bran)">গমের ভুষি (Wheat Bran)</h3>
+                        <p data-bn="গরুর খাবারের প্রিয় এবং হজমযোগ্য আঁশ[cite: 1, 2]." data-en="Favorite and digestible fiber for cattle[cite: 1, 2]." data-hi="मवेशियों के लिए पसंदीदा और पचने योग्य फाइबर[cite: 1, 2]." data-ar="ألياف مفضلة وقابلة للهضم للماشية[cite: 1, 2]." data-zh="牛喜爱的易消化纤维[cite: 1, 2]." data-pt="Fibra favorita e digestível para gado[cite: 1, 2]." data-ja="家畜に好まれる消化しやすい繊維[cite: 1, 2]." data-de="Beliebte und verdauliche Faser für Rinder[cite: 1, 2].">গরুর খাবারের সবচেয়ে প্রিয় এবং হজমযোগ্য আঁশ (Fiber)[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="bran-variant" class="variant-select">
+                                <option value="গরুর খাবার অনুপাত: ২৫%-৩৫% | সোর্স: বাংলাদেশ, ভারত, পাকিস্তান[cite: 1, 2]">গরুর খাবার (অনুপাত: ২৫% - ৩৫%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('bran-variant', 'গমের ভুষি (Wheat Bran)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 18. চিটাগুড় (Molasses) -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-molasses" src="https://images.unsplash.com/photo-1514944298352-fff687f8e32d?auto=format&fit=crop&w=600&q=80" alt="Molasses" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1514944298352-fff687f8e32d?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-molasses', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="চিটাগুড় (Molasses)" data-en="Molasses" data-hi="शीरा / मोलासेस (Molasses)" data-ar="دبس السكر (Molasses)" data-zh="糖蜜 (Molasses)" data-pt="Melaço (Molasses)" data-ja="モラセス / 糖蜜 (Molasses)" data-de="Melasse (Molasses)">চিটাগুড় (Molasses)</h3>
+                        <p data-bn="খাবারের স্বাদ বাড়ায় এবং শক্তি দেয়[cite: 1, 2]." data-en="Enhances feed taste and provides energy[cite: 1, 2]." data-hi="चारे का स्वाद बढ़ाता है और ऊर्जा देता है[cite: 1, 2]." data-ar="يحسن طعم العلف ويمنح الطاقة[cite: 1, 2]." data-zh="增强饲料适口性并提供能量[cite: 1, 2]." data-pt="Melhora o sabor da ração e fornece energia[cite: 1, 2]." data-ja="飼料の嗜好性を高め、エネルギーを供給します[cite: 1, 2]." data-de="Verbessert den Futtergeschmack und liefert Energie[cite: 1, 2].">খাবারের স্বাদ বাড়ায় এবং শক্তি দেয়[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="molasses-variant" class="variant-select">
+                                <option value="গরুর খাবার অনুপাত: ৫%-১০% | সোর্স: বাংলাদেশ, ভারত[cite: 1, 2]">গরুর খাবার (অনুপাত: ৫% - ১০%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('molasses-variant', 'চিটাগুড় (Molasses)')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 19. ইউরিয়া (Urea) সার -->
+            <div class="product-card">
+                <div>
+                    <div class="product-img-container">
+                        <img id="main-urea" src="https://images.unsplash.com/photo-1585336261022-6fc2e7960a4f?auto=format&fit=crop&w=600&q=80" alt="Urea" class="main-product-img" onclick="openModal(this.src)">
+                        <div class="thumb-gallery">
+                            <img src="https://images.unsplash.com/photo-1585336261022-6fc2e7960a4f?auto=format&fit=crop&w=150&q=80" class="thumb-img active" onclick="changeImage('main-urea', this)">
+                        </div>
+                    </div>
+                    <div class="product-body">
+                        <h3 data-bn="ইউরিয়া (Urea) সার" data-en="Urea Fertilizer" data-hi="यूरिया उर्वरक" data-ar="سماد اليوريا (Urea)" data-zh="尿素肥料 (Urea)" data-pt="Fertilizante de Ureia (Urea)" data-ja="尿素肥料 (Urea)" data-de="Harnstoffdünger (Urea)">ইউরিয়া (Urea) সার</h3>
+                        <p data-bn="গরুর জন্য প্রোটিন তৈরিতে সাহায্য করে (সীমিত মাত্রা)[cite: 1, 2]." data-en="Helps synthesize protein in cattle (limited dose)[cite: 1, 2]." data-hi="मवेशियों में प्रोटीन संश्लेषण में मदद करता है[cite: 1, 2]." data-ar="يساعد في تخليق البروتين للماشية (جرعة محدودة)[cite: 1, 2]." data-zh="帮助牛合成蛋白质（限量）[cite: 1, 2]." data-pt="Ajuda na síntese de proteína para gado (dose limitada)[cite: 1, 2]." data-ja="家畜のタンパク質合成を助けます（制限量）[cite: 1, 2]." data-de="Hilft bei der Proteinsynthese bei Rindern (begrenzte Dosis)[cite: 1, 2].">শুধুমাত্র গরুর জন্য প্রোটিন তৈরিতে সাহায্য করে (সীমিত মাত্রা)[cite: 1, 2].</p>
+                        <div class="variant-group">
+                            <label data-bn="অনুপাত ও উৎপত্তি নির্বাচন করুন:" data-en="Select Ratio & Origin:" data-hi="अनुपात और मूल चुनें:" data-ar="حدد النسبة والمصدر:" data-zh="选择比例与产地：" data-pt="Selecione Proporção e Origem:" data-ja="比率と原産地を選択:" data-de="Verhältnis & Herkunft auswählen:">অনুপাত ও উৎপত্তি নির্বাচন করুন:</label>
+                            <select id="urea-variant" class="variant-select">
+                                <option value="গরুর খাবার অনুপাত: ০.৫%-১% (সর্বোচ্চ) | সোর্স: বাংলাদেশ, কাতার[cite: 1, 2]">গরুর খাবার (অনুপাত: ০.৫% - ১%)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <span class="price-label" data-bn="পাইকারি মূল্য জানুন" data-en="Check Wholesale Price" data-hi="थोक मूल्य जानें" data-ar="اعرف سعر الجملة" data-zh="查询批发价" data-pt="Consultar Preço de Atacado" data-ja="卸売価格を確認" data-de="Großhandelspreis anfragen">পাইকারি মূল্য জানুন</span>
+                    <a href="javascript:void(0);" onclick="sendWhatsApp('urea-variant', 'ইউরিয়া (Urea) সার')" class="wa-btn">
+                        <i class="fab fa-whatsapp"></i> <span data-bn="অর্ডার" data-en="Order" data-hi="ऑर्डर" data-ar="طلب" data-zh="订购" data-pt="Pedir" data-ja="注文" data-de="Bestellen">অর্ডার</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Fullscreen Image Zoom Modal -->
+    <div id="imageModal" class="image-modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="image-modal-content" id="modalImg">
+    </div>
+
+    <!-- Proprietor Profile Section -->
+    <section id="profile" class="profile-section">
+        <div class="section-header">
+            <h2 data-bn="স্বত্বাধিকারী পরিচিতি" data-en="Proprietor Profile" data-hi="मालिक का परिचय" data-ar="ملف المالك" data-zh="所有人简介" data-pt="Perfil do Proprietário" data-ja="所有者プロフィール" data-de="Inhaberprofil">স্বত্বাধিকারী পরিচিতি</h2>
+            <p data-bn="প্রতিষ্ঠানের নেতৃত্ব ও ব্যবস্থাপনা" data-en="Leadership and Management" data-hi="नेतृत्व और प्रबंधन" data-ar="القيادة والإدارة" data-zh="领导与管理" data-pt="Liderança e Gestão" data-ja="リーダーシップと管理" data-de="Führung und Management">প্রতিষ্ঠানের নেতৃত্ব ও ব্যবস্থাপনা</p>
+        </div>
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Jubayer Mahmud">
+            </div>
+            <h3>Jubayer Mahmud</h3>
+            <div class="profile-role" data-bn="স্বত্বাধিকারী, JM Feed Logistics" data-en="Proprietor, JM Feed Logistics" data-hi="मालिक, JM Feed Logistics" data-ar="المالك، JM Feed Logistics" data-zh="所有人，JM Feed Logistics" data-pt="Proprietário, JM Feed Logistics" data-ja="所有者、JM Feed Logistics" data-de="Inhaber, JM Feed Logistics">স্বত্বাধিকারী, JM Feed Logistics</div>
+            <div class="profile-contact-info">
+                <p><i class="fa fa-envelope" style="color: var(--accent);"></i> jubayermahmudshohan@gmail.com</p>
+                <p><i class="fa fa-phone" style="color: var(--accent);"></i> 01846295703 / 01707395763</p>
+                <p><i class="fab fa-whatsapp" style="color: #25d366; font-size: 1.2rem;"></i> 01846295703 (WhatsApp)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="section-header">
+            <h2 data-bn="যোগাযোগ" data-en="Contact Us" data-hi="संपर्क करें" data-ar="اتصل بنا" data-zh="联系我们" data-pt="Fale Conosco" data-ja="お問い合わせ" data-de="Kontaktieren Sie uns">যোগাযোগ</h2>
+            <p data-bn="পাইকারি অর্ডার এবং যেকোনো প্রয়োজনে যোগাযোগ করুন" data-en="Contact us for wholesale orders and inquiries" data-hi="थोक ऑर्डर और पूछताछ के लिए संपर्क करें" data-ar="اتصل بنا لطلبات الجملة والاستفسارات" data-zh="批量订购及咨询请联系我们" data-pt="Entre em contato para pedidos no atacado e dúvidas" data-ja="卸売注文やお問い合わせはこちらから" data-de="Kontaktieren Sie uns für Großhandelsbestellungen und Anfragen">পাইকারি অর্ডার এবং যেকোনো প্রয়োজনে যোগাযোগ করুন</p>
+        </div>
+        <div class="contact-box">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fa fa-map-marker-alt"></i>
+                    <div>
+                        <h4 data-bn="অফিস ও গুদাম" data-en="Office & Warehouse" data-hi="कार्यालय और गोदाम" data-ar="المكتب والمستودع" data-zh="办公室与仓库" data-pt="Escritório e Armazém" data-ja="オフィス・倉庫" data-de="Büro & Lager">অফিস ও গুদাম</h4>
+                        <p data-bn="ঢাকা, বাংলাদেশ (সারাদেশে সাপ্লাই)" data-en="Dhaka, Bangladesh (Nationwide Supply)" data-hi="ढाका, बांग्लादेश (देशव्यापी आपूर्ति)" data-ar="دكا، بنغلاديش (توريد لجميع أنحاء البلاد)" data-zh="达卡，孟加拉国（全国供应）" data-pt="Daka, Bangladesh (Fornecimento nacional)" data-ja="ダッカ、バングラデシュ（全国配送）" data-de="Dhaka, Bangladesch (landesweite Lieferung)">ঢাকা, বাংলাদেশ (সারাদেশে সাপ্লাই)</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-phone-alt"></i>
+                    <div>
+                        <h4 data-bn="ফোন নম্বর" data-en="Phone Numbers" data-hi="फ़ोन नंबर" data-ar="أرقام الهواتف" data-zh="电话号码" data-pt="Números de Telefone" data-ja="電話番号" data-de="Telefonnummern">ফোন নম্বর</h4>
+                        <p>01846295703<br>01707395763</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fa fa-envelope"></i>
+                    <div>
+                        <h4 data-bn="ইমেইল এড্রেস" data-en="Email Address" data-hi="ईमेल पता" data-ar="عنوان البريد الإلكتروني" data-zh="电子邮箱地址" data-pt="Endereço de E-mail" data-ja="メールアドレス" data-de="E-Mail-Adresse">ইমেইল এড্রেস</h4>
+                        <p>jubayermahmudshohan@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/8801846295703?text=আসসালামু%20আলাইকুম,%20JM%20Feed%20Logistics%20এর%20সাথে%20কথা%20বলতে%20চাই।" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; ২০২৬ JM Feed Logistics. All Rights Reserved.</p>
+        <p>Proprietor: Jubayer Mahmud | Global Raw Material Supply Chain</p>
+    </footer>
+
+    <!-- JavaScript for Multilingual Support -->
+    <script>
+        function changeImage(mainImgId, thumbElement) {
+            var mainImg = document.getElementById(mainImgId);
+            mainImg.src = thumbElement.src;
+            var parentGallery = thumbElement.parentElement;
+            var thumbs = parentGallery.getElementsByClassName('thumb-img');
+            for(let t of thumbs) {
+                t.classList.remove('active');
+            }
+            thumbElement.classList.add('active');
+        }
+
+        function openModal(imgSrc) {
+            var modal = document.getElementById('imageModal');
+            var modalImg = document.getElementById('modalImg');
+            modal.style.display = "flex";
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+
+        function sendWhatsApp(selectId, productName) {
+            var selectElement = document.getElementById(selectId);
+            var selectedVariant = selectElement.value;
+            var phone = "8801846295703";
+            var message = `আসসালামু আলাইকুম, আমি JM Feed Logistics থেকে নিচের পণ্যটি সম্পর্কে বিস্তারিত জানতে ও অর্ডার করতে চাই:\n\n*পণ্য:* ${productName}\n*সিলেক্টেড অনুপাত ও সোর্স:* ${selectedVariant}\n\nদয়া করে বর্তমান বাজারমূল্য এবং ডেলিভারি প্রসেসটি জানান।`;
+            var encodedMessage = encodeURIComponent(message);
+            var whatsappURL = `https://wa.me/${phone}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        function changeLanguage(lang) {
+            document.getElementById('htmlRoot').setAttribute('lang', lang);
+
+            // Font adjustments based on language family
+            if(lang === 'ar') {
+                document.documentElement.style.setProperty('--font-family', "'Cairo', sans-serif");
+            } else if(lang === 'zh' || lang === 'ja') {
+                document.documentElement.style.setProperty('--font-family', "'Noto Sans SC', sans-serif");
+            } else if(lang === 'bn') {
+                document.documentElement.style.setProperty('--font-family', "'Hind Siliguri', sans-serif");
+            } else {
+                document.documentElement.style.setProperty('--font-family', "'Plus Jakarta Sans', sans-serif");
+            }
+
+            // Translate all elements having data attributes for chosen language
+            const elements = document.querySelectorAll('[data-bn]');
+            elements.forEach(el => {
+                if (el.hasAttribute('data-' + lang)) {
+                    el.innerHTML = el.getAttribute('data-' + lang);
+                } else if (el.hasAttribute('data-en')) {
+                    el.innerHTML = el.getAttribute('data-en'); // Fallback to English
+                }
+            });
+        }
+    </script>
+</body>
+</html>
